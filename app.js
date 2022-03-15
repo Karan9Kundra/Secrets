@@ -144,8 +144,8 @@ app.post("/login", function(req, res){
 
 
 
+const port = 3000;
 
-
-app.listen(3000, function() {
-  console.log("Server started on port 3500.");
+app.listen(port, () => {
+  console.log("Server started on port 3000.");
 });
