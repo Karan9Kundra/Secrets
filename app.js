@@ -62,7 +62,7 @@ app.get("/register", function(req, res){
   res.render("register");
 });
 
-app.get("/s3cYreANtCsAfbG4WtyPlFjrt", function(req, res){
+app.get("/secrets", function(req, res){
   User.find({"secret": {$ne: null}}, function(err, foundUsers){
     if (err){
       console.log(err);
@@ -95,7 +95,7 @@ app.post("/submit", function(req, res){
       if (foundUser) {
         foundUser.secret = submittedSecret;
         foundUser.save(function(){
-          res.redirect("/s3cYreANtCsAfbG4WtyPlFjrt");
+          res.redirect("/secrets");
         });
       }
     }
@@ -119,7 +119,7 @@ app.post("/register", function(req, res){
       res.redirect("/register");
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/s3cYreANtCsAfbG4WtyPlFjrt");
+        res.redirect("/secrets");
       });
     }
   });
@@ -138,7 +138,7 @@ app.post("/login", function(req, res){
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/s3cYreANtCsAfbG4WtyPlFjrt");
+        res.redirect("/secrets");
       });
     }
   });
