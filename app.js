@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const year = new Date().getFullYear
 
 const app = express();
 
@@ -61,7 +62,7 @@ app.get("/register", function(req, res){
   res.render("register");
 });
 
-app.get("/secrets", function(req, res){
+app.get("/s3cYreANtCsAfbG4WtyPlFjrt", function(req, res){
   User.find({"secret": {$ne: null}}, function(err, foundUsers){
     if (err){
       console.log(err);
@@ -94,7 +95,7 @@ app.post("/submit", function(req, res){
       if (foundUser) {
         foundUser.secret = submittedSecret;
         foundUser.save(function(){
-          res.redirect("/secrets");
+          res.redirect("/s3cYreANtCsAfbG4WtyPlFjrt");
         });
       }
     }
@@ -106,6 +107,10 @@ app.get("/logout", function(req, res){
   res.redirect("/");
 });
 
+app.get("/how-it-works", function(req, res){
+  res.render("info");
+});
+
 app.post("/register", function(req, res){
 
   User.register({username: req.body.username}, req.body.password, function(err, user){
@@ -114,7 +119,7 @@ app.post("/register", function(req, res){
       res.redirect("/register");
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/secrets");
+        res.redirect("/s3cYreANtCsAfbG4WtyPlFjrt");
       });
     }
   });
@@ -133,7 +138,7 @@ app.post("/login", function(req, res){
       console.log(err);
     } else {
       passport.authenticate("local")(req, res, function(){
-        res.redirect("/secrets");
+        res.redirect("/s3cYreANtCsAfbG4WtyPlFjrt");
       });
     }
   });
